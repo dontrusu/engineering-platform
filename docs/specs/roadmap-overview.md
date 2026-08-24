@@ -6,38 +6,42 @@ scope is deliberately sequenced.
 
 ## Documents in this set
 
-| File | Purpose |
-|---|---|
-| `platform-spec.md` | The portfolio site itself — IA, positioning, page templates, stack |
-| `atlas-spec.md` | Project 1 — repo architecture visualizer (AI + fullstack anchor) |
-| `pulse-spec.md` | Project 2 — SSR performance case study (Nuxt/Vue) |
-| `composite-spec.md` | Project 3 — microfrontend migration case study (architecture/writing-led) |
-| `adr-template.md` | Copy into every project's `/decisions` folder, one file per decision |
-| `readme-template.md` | Copy into every project repo root, fill in per project |
+| File                 | Purpose                                                                   |
+| -------------------- | ------------------------------------------------------------------------- |
+| `platform-spec.md`   | The portfolio site itself — IA, positioning, page templates, stack        |
+| `atlas-spec.md`      | Project 1 — repo architecture visualizer (AI + fullstack anchor)          |
+| `pulse-spec.md`      | Project 2 — SSR performance case study (Nuxt/Vue)                         |
+| `composite-spec.md`  | Project 3 — microfrontend migration case study (architecture/writing-led) |
+| `adr-template.md`    | Copy into every project's `docs/adr/` folder, one file per decision       |
+| `readme-template.md` | Copy into every project repo root, fill in per project                    |
 
 ## Sequencing
 
 ### Phase 1 — MVP
+
 1. Build **Atlas** first, standalone, using `atlas-spec.md`. This is the
    highest-impact single project (fullstack + AI positioning) and should
    exist and be deployed before the platform site needs to link to it.
 2. Build the **platform site** shell using `platform-spec.md`, with the
-   `/work/atlas` case study page as the first fully-populated case study.
-   At the end of Phase 1 you have a live site with one strong case study —
-   enough to start applying.
+   `/work/atlas` Atlas Stub as its first project page. Replace the stub with
+   a fully-populated Case Study when Atlas evidence is ready.
+   At the end of Phase 1 you have a live site with an honest project page
+   and a clear path to the full case study.
 
 ### Phase 2
+
 3. Build **Pulse** using `pulse-spec.md`. Add `/work/pulse` to the site
    using the same case study page template already built in Phase 1 (no
    template rework needed).
 
 ### Phase 3
+
 4. Build **Composite** using `composite-spec.md`. This one is
    writing-and-diagram-led and lower engineering effort than the first two
    — don't over-invest in the POC's polish.
-5. Add `/work/composite`, backfill `/notes` (3–5 decision-record write-ups
-   pulled from the strongest ADRs across all three projects), and add the
-   site's own live Core Web Vitals meta-feature if not already done.
+5. Add `/work/composite`, backfill `/notes` only when genuinely difficult
+   project decisions produce them (cap at 5), and keep the site's own
+   performance metrics out of scope unless a later decision reopens them.
 
 ## Non-negotiables across all three projects
 
@@ -55,7 +59,7 @@ if a coding agent starts to drift:
   model output directly into the UI or into a claimed metric.
 - **Commit history stays real and incremental** — no squashing the
   iteration history, especially in Pulse where the optimization sequence
-  *is* the evidence.
+  _is_ the evidence.
 - **Every repo uses the same README structure** (`readme-template.md`) so
   an EM reviewing multiple repos doesn't have to re-orient each time.
 
@@ -63,7 +67,7 @@ if a coding agent starts to drift:
 
 - 3 deployed, working projects, each with a populated case study page on
   the platform site.
-- Each project repo: README (from template), `/decisions` with at least
+- Each project repo: README (from template), `docs/adr/` with at least
   3–4 real ADRs, tests passing in CI, and — where applicable —
   `/benchmarks` with raw, disclosed-methodology data.
 - Platform site: home page hits the 60–120 second hierarchy from

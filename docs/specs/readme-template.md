@@ -21,11 +21,11 @@ actually mattered.
 
 ## Key decisions
 
-Bullet list, each linking to the full ADR in `/decisions`:
+Bullet list, each linking to the full ADR in `/docs/adr`:
 
-- [Decision 1 — one line] → [`/decisions/0001-....md`]
-- [Decision 2 — one line] → [`/decisions/0002-....md`]
-- [Decision 3 — one line] → [`/decisions/0003-....md`]
+- [Decision 1 — one line] → [`/docs/adr/0001-....md`]
+- [Decision 2 — one line] → [`/docs/adr/0002-....md`]
+- [Decision 3 — one line] → [`/docs/adr/0003-....md`]
 
 ## What I'd do differently / known limitations
 

@@ -14,7 +14,7 @@ Headline framing to use across the site:
 > trade-offs, judged on their own terms."
 
 This is deliberately not a title/stack/years-of-experience headline. The
-site's existence _is_ the pitch — it should read as the honest reason
+site's existence *is* the pitch — it should read as the honest reason
 someone would build this rather than just send another CV, not as a label
 ("frontend engineer," "fullstack engineer") the person is asking to be
 filed under. Let the case studies demonstrate range across frontend, SSR,
@@ -38,13 +38,12 @@ Every page should reinforce this without repeating it verbatim.
 /            → positioning + a compact "who's behind this" strip + 3
                real-experience proof points + 3 case study cards +
                resume/contact CTA
-/work        → index of the 3 Projects; unavailable Projects are not linked
-/work/atlas  → Atlas Stub until the real Case Study is built
-/work/pulse  → available once its Case Study exists
-/work/composite → available once its Case Study exists
-/notes       → Notes, with an honest empty state when none exist
-/resume      → page shell with explicit content placeholders until real
-               resume/contact material is available
+/work        → index of the 3 case studies
+/work/atlas
+/work/pulse
+/work/composite
+/notes       → 3–5 short decision-record write-ups
+/resume      → downloadable PDF + contact links
 ```
 
 No blog, no tags/categories system, no CMS — content is authored directly
@@ -56,35 +55,30 @@ CMS — the answer is "not yet, would revisit past N case studies."
 ## 4. Page-Level Content Requirements
 
 ### `/` (home)
-
 - 0–10s zone: name, one-line positioning (the "why this site exists"
   framing from section 1).
 - 10–30s zone: 3 quantified real-experience proof points from actual jobs
-  (not side projects). Until approved Proof Points are gathered, retain
-  the section structure but show an editorial notice rather than example
-  claims.
+  (not side projects) — e.g. "Built LLM-based planning tooling used for
+  enterprise initiative estimation," "Optimized Core Web Vitals across a
+  high-traffic e-commerce microfrontend network," "Shipped reusable
+  component systems adopted across an enterprise platform."
 - 30–60s zone: 3 case study cards — one-sentence problem framing, tech
-  badges, and a headline metric only when one is verified and meaningful.
-  Unavailable Projects omit metrics and are not linked. No screenshot-first
-  grid.
+  badges, one headline metric each. No screenshot-first grid.
 - 60–120s zone: a short "who's behind this" strip — one compact paragraph
   covering the breadth of what's been built professionally (enterprise
   tooling, AI-assisted workflows, security platforms, high-traffic
   commerce infra) as a single narrative sentence or two, not an itemized
   per-project list. This replaces a dedicated `/about` page — the case
   studies carry the depth, this strip just gives a sense of range and
-  voice. Until approved background copy exists, show an editorial notice.
-  Tone should read as a person who got tired of resumes and built
+  voice. Tone should read as a person who got tired of resumes and built
   something better, not a corporate bio.
-- Then: short "how I work" strip (3–4 approved statements, not an essay) +
-  resume/contact CTA, persistent/sticky. Use an editorial notice until the
-  statements are approved.
+- Then: short "how I work" strip (3–4 short statements, not an essay) +
+  resume/contact CTA, persistent/sticky.
 - Explicitly excluded: hero animation, skill-icon wall, testimonials
   carousel, long "About Me" text above the fold, a dedicated `/about` page
   that just restates the resume.
 
 ### `/work/[slug]` (case study page — shared questions, flexible structure)
-
 Do not force every case study through the same nine sections in the same
 order — that produces the exact "symmetric case studies built for visual
 consistency" smell that undermines credibility. Instead, every case study
@@ -92,7 +86,6 @@ must **answer the same underlying questions**, but the structure and
 emphasis should fit the project:
 
 Core questions every case study must answer somewhere:
-
 - What was the problem, and what made it non-trivial?
 - What were the real constraints?
 - What did the architecture look like, and why?
@@ -124,13 +117,11 @@ particular may have little to no metrics section; architecture quality and
 migration safety are its evidence, not a number.
 
 ### `/notes`
-
 Publish notes only when they emerge naturally from a genuinely difficult or
 interesting decision made while building one of the case studies — do not
 write notes to hit a target count. Zero, two, or five notes are all fine;
 quality and authenticity matter more than quantity. Cap at 5 so this never
 becomes an ongoing content commitment.
-When no Note exists, show a concise empty state explaining this rule.
 
 ## 5. Visual Direction
 
@@ -139,33 +130,23 @@ type-driven, restrained, high-contrast, generous whitespace, one accent
 color, monospace for code/metrics/data. No gradients-as-decoration, no 3D,
 no particle backgrounds, no scroll-jacking. Interactions exist only where
 they prove something (e.g. a live-updating metric, an actually-fast route
-transition) — not for decoration. Architecture diagram tooling and diagram
-content are deferred until after the first platform launch; initial pages may
-use prose or a simple placeholder.
+transition) — not for decoration.
 
-## 6. Performance scope
+## 6. Meta-Signal Feature: the site's own performance, shown honestly
 
-Removed from MVP by ADR-0003. The platform may add an honest performance
-signal later, but it is not required or publicly displayed in the initial
-content-focused release.
+Surface the site's own real Core Web Vitals somewhere unobtrusive (footer,
+or a small stat near the "who's behind this" strip) using the client-side
+`web-vitals` library, reported honestly at build/deploy time or on-demand —
+**no database required for this.** Fullstack/persistence skill is already
+demonstrated for real in Atlas; duplicating it here just to log a metric
+nobody asked to see history of is scope the platform doesn't need. If
+historical CWV tracking ever becomes genuinely useful, it's a separate,
+later enhancement — not an MVP requirement.
 
 ## 7. Tech Stack
 
-- Node.js 24 LTS, with the version pinned in `.node-version`.
-- pnpm with a committed `pnpm-lock.yaml`, a pinned `packageManager` field,
-  and Corepack enabled in local and CI setup.
-- Next.js 16.3.x (App Router), React Server Components by default, and
-  TypeScript strict.
-- MDX through the official `@next/mdx` integration, with a small local
-  content loader.
-- Zod for build-time validation of separate Case Study and Note schemas.
-- Tailwind CSS v4, locally owned shadcn-style components scaffolded only as
-  needed, and selective Radix primitives for keyboard-sensitive interaction.
-- Lucide React for occasional interface icons.
-- ESLint with the Next.js/TypeScript configuration and Prettier.
-- Vitest for content/schema and pure UI logic tests.
-- Playwright with axe for route, keyboard-flow, and accessibility tests.
-- Vercel deployment and GitHub Actions for required CI.
+- Next.js (App Router), TypeScript strict.
+- MDX for case study and notes content, stored in the repo.
 - No database. The platform is a presentation layer for the evidence, not
   a fourth engineering project — it must not compete for scope with Atlas,
   Pulse, or Composite. If a coding agent proposes infrastructure here
@@ -175,12 +156,10 @@ content-focused release.
 - No auth needed on the platform site itself (auth lives inside Atlas/Pulse
   where it's actually part of the demonstrated skill).
 
-Standard scripts:
-`dev`, `build`, `start`, `lint`, `format`, `format:check`, `typecheck`,
-`test`, and `test:e2e`.
-
 ## 8. Non-Functional Requirements
 
+- LCP, INP, TTFB targets in the "good" Core Web Vitals thresholds on a
+  throttled connection profile — and actually measured, not assumed.
 - Fully keyboard-navigable, semantic HTML, passes basic automated
   accessibility checks (axe or similar) — accessibility wasn't listed as a
   headline priority, but a portfolio claiming senior frontend craft with an
@@ -194,22 +173,16 @@ Standard scripts:
 /content/work        — MDX case study content
 /content/notes        — MDX notes
 /components
-/components/ui       — locally owned shadcn-style components
 /lib
 /tests
-.node-version
-package.json
-pnpm-lock.yaml
 README.md
 ```
 
 ## 10. Definition of Done (MVP)
 
-- `/`, `/work`, `/work/atlas`, `/resume` live and
-  deployed, with `/work/atlas` presented as a truthful Atlas Stub until
-  Atlas is built and its Case Study is ready. Pulse and Composite appear as
-  Unavailable Projects without detail routes. `/notes` has an honest empty
-  state when no Note exists, and `/resume` contains no fabricated content.
+- `/`, `/work`, `/work/atlas` (once Atlas is built), `/resume` live and
+  deployed, with the home page's "who's behind this" strip populated.
 - Case study page template implemented and reusable for Pulse and Composite
   without rework.
+- Site's own Core Web Vitals meet target thresholds, verified, not assumed.
 - Basic accessibility check passing.

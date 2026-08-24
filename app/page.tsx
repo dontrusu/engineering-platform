@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 const proofPoints = [
-  "Verified platform work opens in an honest, evidence-first path.",
-  "Case studies and notes stay close to the actual decisions and trade-offs.",
-  "The presentation layer remains intentionally lightweight and easy to reason about.",
+  "Editorial notice: the proof point copy is intentionally deferred until it can be backed by approved evidence.",
+  "Editorial notice: no claim is published here without a real artifact, benchmark, or documented reasoning trail.",
+  "Editorial notice: the site stays truthful by withholding unapproved professional claims.",
 ];
 
 export default function HomePage() {
@@ -150,8 +150,12 @@ export default function HomePage() {
               How I work
             </p>
             <h2 id="cta" className="mt-2 text-xl font-medium">
-              Evidence-first, decision-aware, and explicit about trade-offs.
+              Editorial notice
             </h2>
+            <p className="mt-2 max-w-xl text-[var(--muted)]">
+              The working statements are intentionally deferred until they can
+              be written with real evidence and explicit trade-offs.
+            </p>
           </div>
           <Link
             href="/resume"

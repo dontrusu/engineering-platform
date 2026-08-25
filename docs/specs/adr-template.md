@@ -46,6 +46,7 @@ I know now" footnote. This is the section that most differentiates a real
 engineering decision record from a justification written after the fact.
 
 ---
-*Write this as the decision is being made, not reconstructed afterward —
+
+_Write this as the decision is being made, not reconstructed afterward —
 the value of an ADR is in showing live reasoning, not a tidy retrospective
-narrative.*
+narrative._

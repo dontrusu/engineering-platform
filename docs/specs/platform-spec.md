@@ -151,7 +151,7 @@ content-focused release.
 
 ## 7. Tech Stack
 
-- Node.js 24 LTS, with the version pinned in `.node-version`.
+- Node.js 24 LTS, with the runtime declared in `package.json` for pnpm and CI.
 - pnpm with a committed `pnpm-lock.yaml`, a pinned `packageManager` field,
   and Corepack enabled in local and CI setup.
 - Next.js 16.3.x (App Router), React Server Components by default, and
@@ -197,7 +197,6 @@ Standard scripts:
 /components/ui       — locally owned shadcn-style components
 /lib
 /tests
-.node-version
 package.json
 pnpm-lock.yaml
 README.md

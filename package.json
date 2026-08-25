@@ -2,8 +2,12 @@
   "name": "engineering-platform",
   "private": true,
   "packageManager": "pnpm@11.23.0",
-  "engines": {
-    "node": ">=24.18.0"
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "^24.18.0",
+      "onFail": "download"
+    }
   },
   "scripts": {
     "dev": "next dev",

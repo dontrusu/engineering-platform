@@ -6,3 +6,4 @@ out
 coverage
 playwright-report
 .DS_Store
+docs/planning

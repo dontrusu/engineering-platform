@@ -2,36 +2,41 @@ import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  ProjectStatusIndicator,
-  type ProjectStatus,
-} from "@/components/common/project-status";
+import { ProjectStatusIndicator } from "@/components/common/project-status";
+import type { ProjectStatus } from "@/lib/projects";
 
 export type ProjectCardProps = {
   name: string;
-  title: string;
-  description: string;
-  status?: ProjectStatus;
-  href?: string;
+  problem: string;
+  technologies: string[];
+  status: ProjectStatus;
+  currentState: string;
+  pageHref?: string;
+  deployedHref?: string;
 };
 
 export function ProjectCard({
   name,
-  title,
-  description,
+  problem,
+  technologies,
   status,
-  href,
+  currentState,
+  pageHref,
+  deployedHref,
 }: ProjectCardProps) {
   return (
     <article aria-label={name} className="h-full">
       <Card className="h-full border border-[var(--line)] bg-white/70 shadow-sm">
         <CardHeader>
-          <Badge
-            variant="outline"
-            className="w-fit uppercase tracking-[0.16em]"
-          >
-            {name}
-          </Badge>
+          <div className="flex items-start justify-between gap-3">
+            <Badge
+              variant="outline"
+              className="w-fit uppercase tracking-[0.16em]"
+            >
+              {name}
+            </Badge>
+            <ProjectStatusIndicator status={status} />
+          </div>
         </CardHeader>
         <CardContent className="space-y-3 pt-0">
           <CardTitle
@@ -39,19 +44,40 @@ export function ProjectCard({
             aria-level={3}
             className="mt-0 text-xl font-medium leading-snug tracking-[-0.02em]"
           >
-            {href ? (
+            {name}
+          </CardTitle>
+          <p className="text-sm text-[var(--muted)]">{problem}</p>
+          <div>
+            <p className="text-xs font-medium uppercase tracking-[0.14em] text-[var(--muted)]">
+              Technology
+            </p>
+            <ul aria-label={`${name} technologies`} className="mt-2 flex flex-wrap gap-2">
+              {technologies.map((technology) => (
+                <li key={technology}>
+                  <Badge variant="secondary">{technology}</Badge>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <p className="text-sm text-[var(--muted)]">{currentState}</p>
+          <div className="flex flex-wrap gap-4 pt-2 text-sm">
+            {pageHref ? (
               <Link
-                href={href}
+                href={pageHref}
                 className="text-[var(--highlight)] underline underline-offset-4"
               >
-                {title}
+                View Project Page
               </Link>
-            ) : (
-              title
-            )}
-          </CardTitle>
-          <p className="text-sm text-[var(--muted)]">{description}</p>
-          {status ? <ProjectStatusIndicator status={status} /> : null}
+            ) : null}
+            {deployedHref ? (
+              <a
+                href={deployedHref}
+                className="text-[var(--highlight)] underline underline-offset-4"
+              >
+                Visit project
+              </a>
+            ) : null}
+          </div>
         </CardContent>
       </Card>
     </article>

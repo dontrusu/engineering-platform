@@ -12,6 +12,18 @@ _Avoid_: Case study
 The platform's explanation of a Project's problem, decisions, trade-offs, and evidence.
 _Avoid_: Project
 
+**Project Page**:
+A public page that introduces a Project, its problem, and its current state. A Project Page may exist before the Project is deployed and is not necessarily a Case Study.
+_Avoid_: Case study, stub
+
+**Planned**:
+A Project status meaning the Project is not currently available through a verified deployed-project link.
+_Avoid_: Unavailable Project
+
+**Live**:
+A Project status meaning the actual Project is available through a verified deployed-project link.
+_Avoid_: Complete Case Study
+
 **Note**:
 A short write-up that emerges from a genuinely difficult or interesting decision made while building a Project.
 _Avoid_: Blog post, article
@@ -25,9 +37,5 @@ Material that supports a Case Study's claims, including a metric, benchmark, art
 _Avoid_: Proof point
 
 **Atlas Stub**:
-A truthful public page containing only Atlas's problem framing, intended value, and an explicit statement that the Case Study is not yet built.
-_Avoid_: Draft case study, placeholder case study
-
-**Unavailable Project**:
-A Project represented in the Work index without a detail route until its Case Study has real content.
-_Avoid_: Planned case study
+A former term for Atlas's interim page. Use Project Page for the route and describe incomplete evidence directly rather than treating Stub as a Project status.
+_Avoid_: Stub status

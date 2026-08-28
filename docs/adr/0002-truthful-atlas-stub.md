@@ -1,7 +1,7 @@
 # Truthful Atlas stub
 
-**Status:** accepted
+**Status:** superseded by ADR-0007
 **Date:** 2026-08-22
 **Project:** Platform
 
-The platform may publish a linked Atlas Stub before Atlas and its Case Study are complete. The stub contains only the project's problem framing and intended value, clearly says that the Case Study is not yet built, and does not present planned architecture, metrics, source links, or other provisional material as evidence.
+The platform may publish an interim Atlas Project Page before Atlas and its Case Study are complete. The current Project Page must remain truthful and must not present planned architecture, metrics, source links, or other provisional material as Evidence. See ADR-0007 for the current Project Page and status model.

@@ -1,9 +1,30 @@
 import Link from "next/link";
 
+import { ProjectCard } from "@/components/common/project-card";
+import { ProofPointCard } from "@/components/common/proof-point-card";
+
 const proofPoints = [
   "Editorial notice: the proof point copy is intentionally deferred until it can be backed by approved evidence.",
   "Editorial notice: no claim is published here without a real artifact, benchmark, or documented reasoning trail.",
   "Editorial notice: the site stays truthful by withholding unapproved professional claims.",
+];
+
+const projectCards = [
+  {
+    name: "Atlas",
+    title: "Truthful stub pending case study",
+    description: "The public page exists without fabricated project claims.",
+  },
+  {
+    name: "Pulse",
+    title: "Unavailable project",
+    description: "No detail route is live until the real case study exists.",
+  },
+  {
+    name: "Composite",
+    title: "Unavailable project",
+    description: "No detailed work is published without honest evidence.",
+  },
 ];
 
 export default function HomePage() {
@@ -64,17 +85,11 @@ export default function HomePage() {
           </div>
           <div className="grid gap-4 md:grid-cols-3">
             {proofPoints.map((point) => (
-              <article
+              <ProofPointCard
                 key={point}
-                className="rounded-2xl border border-[var(--line)] bg-[var(--panel)] p-5 shadow-sm"
-              >
-                <p className="text-sm uppercase tracking-[0.12em] text-[var(--muted)]">
-                  Proof point
-                </p>
-                <p className="mt-3 text-base text-[var(--foreground)]">
-                  {point}
-                </p>
-              </article>
+                eyebrow="Proof point"
+                body={point}
+              />
             ))}
           </div>
         </section>
@@ -92,35 +107,14 @@ export default function HomePage() {
             </p>
           </div>
           <div className="grid gap-5 md:grid-cols-3">
-            <article className="rounded-2xl border border-[var(--line)] bg-white/70 p-5">
-              <p className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">
-                Atlas
-              </p>
-              <h3 className="mt-3 text-xl font-medium">
-                Truthful stub pending case study
-              </h3>
-              <p className="mt-3 text-sm text-[var(--muted)]">
-                The public page exists without fabricated project claims.
-              </p>
-            </article>
-            <article className="rounded-2xl border border-[var(--line)] bg-white/70 p-5">
-              <p className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">
-                Pulse
-              </p>
-              <h3 className="mt-3 text-xl font-medium">Unavailable project</h3>
-              <p className="mt-3 text-sm text-[var(--muted)]">
-                No detail route is live until the real case study exists.
-              </p>
-            </article>
-            <article className="rounded-2xl border border-[var(--line)] bg-white/70 p-5">
-              <p className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">
-                Composite
-              </p>
-              <h3 className="mt-3 text-xl font-medium">Unavailable project</h3>
-              <p className="mt-3 text-sm text-[var(--muted)]">
-                No detailed work is published without honest evidence.
-              </p>
-            </article>
+            {projectCards.map((project) => (
+              <ProjectCard
+                key={project.name}
+                name={project.name}
+                title={project.title}
+                description={project.description}
+              />
+            ))}
           </div>
         </section>
 

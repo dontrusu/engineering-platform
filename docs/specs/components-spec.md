@@ -6,13 +6,16 @@ The architectural rationale and alternatives are recorded in
 
 ## UI primitives — `components/ui/*`
 
-`components/ui/*` contains domain-agnostic, locally owned UI primitives
-generated in the shadcn style, such as `Button`, `Card`, `Badge`, and
-`Dialog`.
+`components/ui/*` contains domain-agnostic UI primitives installed from
+the official [shadcn/ui](https://ui.shadcn.com/) component registry using
+the shadcn CLI, such as `Button`, `Card`, `Badge`, and `Dialog`. The CLI
+configuration and generated source are committed to the repository.
 
-Generic styling, behavior, and accessibility fixes are allowed, because the
-source is repository-owned. Business concepts, content, and domain-specific
-props are not allowed in this layer.
+The generated source becomes repository-owned: generic styling, behavior,
+and accessibility fixes are allowed. Business concepts, content, and
+domain-specific props are not allowed in this layer. Use the CLI when
+adding a new primitive so its dependencies and generated files stay
+consistent with the registry.
 
 ## Shared compositions — `components/common/*`
 
@@ -42,8 +45,10 @@ If composition no longer meaningfully fits a domain component, a standalone
 Tailwind implementation is allowed. No additional exception document is
 required.
 
-Shared domain variants use `class-variance-authority`. Add the dependency
-when the first such variant is introduced; do not install it preemptively.
+Use the dependencies selected by the shadcn CLI for generated primitives.
+Shared domain variants should follow the same `class-variance-authority`
+pattern; add that dependency when the first such variant needs it if it
+was not already introduced by a generated primitive.
 
 ## Completion checklist
 

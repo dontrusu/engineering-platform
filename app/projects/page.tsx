@@ -5,7 +5,11 @@ import { projects } from "@/lib/projects";
 
 export default function ProjectsPage() {
   return (
-    <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+    <main
+      id="main-content"
+      tabIndex={-1}
+      className="min-h-screen text-foreground"
+    >
       <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8 lg:px-10">
         <header className="mb-10 border-b border-[var(--line)] pb-8">
           <Link href="/" className="text-sm text-[var(--highlight)] underline">
@@ -27,9 +31,9 @@ export default function ProjectsPage() {
             Projects
           </h2>
           <div className="grid gap-5 md:grid-cols-3">
-          {projects.map((project) => (
-            <ProjectCard key={project.slug} {...project} />
-          ))}
+            {projects.map((project) => (
+              <ProjectCard key={project.slug} {...project} />
+            ))}
           </div>
         </section>
       </div>

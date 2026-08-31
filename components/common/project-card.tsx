@@ -26,7 +26,7 @@ export function ProjectCard({
 }: ProjectCardProps) {
   return (
     <article aria-label={name} className="h-full">
-      <Card className="h-full border border-[var(--line)] bg-white/70 shadow-sm">
+      <Card className="h-full border border-[var(--line)] bg-[var(--panel)] shadow-none">
         <CardHeader>
           <div className="flex items-start justify-between gap-3">
             <Badge
@@ -51,7 +51,10 @@ export function ProjectCard({
             <p className="text-xs font-medium uppercase tracking-[0.14em] text-[var(--muted)]">
               Technology
             </p>
-            <ul aria-label={`${name} technologies`} className="mt-2 flex flex-wrap gap-2">
+            <ul
+              aria-label={`${name} technologies`}
+              className="mt-2 flex flex-wrap gap-2"
+            >
               {technologies.map((technology) => (
                 <li key={technology}>
                   <Badge variant="secondary">{technology}</Badge>

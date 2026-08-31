@@ -11,9 +11,16 @@ export default function AtlasPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+    <main
+      id="main-content"
+      tabIndex={-1}
+      className="min-h-screen text-foreground"
+    >
       <div className="mx-auto max-w-4xl px-6 py-16 sm:px-8">
-        <Link href="/projects" className="text-sm text-[var(--highlight)] underline">
+        <Link
+          href="/projects"
+          className="text-sm text-[var(--highlight)] underline"
+        >
           Back to projects
         </Link>
         <p className="mt-10 text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
@@ -26,7 +33,10 @@ export default function AtlasPage() {
           <ProjectStatusIndicator status={atlas.status} />
         </div>
         <section aria-labelledby="atlas-framing" className="mt-10 space-y-5">
-          <h2 id="atlas-framing" className="text-2xl font-semibold tracking-[-0.04em]">
+          <h2
+            id="atlas-framing"
+            className="text-2xl font-semibold tracking-[-0.04em]"
+          >
             Problem framing
           </h2>
           <p className="text-lg text-[var(--muted)]">{atlas.problem}</p>
@@ -36,11 +46,19 @@ export default function AtlasPage() {
             are not published until they are ready to be represented truthfully.
           </p>
         </section>
-        <section aria-labelledby="atlas-state" className="mt-10 border-t border-[var(--line)] pt-8">
-          <h2 id="atlas-state" className="text-2xl font-semibold tracking-[-0.04em]">
+        <section
+          aria-labelledby="atlas-state"
+          className="mt-10 border-t border-[var(--line)] pt-8"
+        >
+          <h2
+            id="atlas-state"
+            className="text-2xl font-semibold tracking-[-0.04em]"
+          >
             Current state
           </h2>
-          <p className="mt-4 text-lg text-[var(--muted)]">{atlas.currentState}</p>
+          <p className="mt-4 text-lg text-[var(--muted)]">
+            {atlas.currentState}
+          </p>
         </section>
         {atlas.deployedHref ? (
           <a

@@ -4,6 +4,14 @@ The portfolio platform presents evidence about the author's professional work. I
 
 ## Content
 
+**Site Identity**:
+The name and visual identity of the portfolio platform itself: Engineering Lab. It is distinct from both the author whose work the platform presents and the Projects documented by the platform.
+_Avoid_: Project
+
+**Experience**:
+The homepage account of the author's professional history. It is the canonical surface for roles and career history; the platform does not maintain a separate Resume page.
+_Avoid_: Resume
+
 **Project**:
 An independently built system, such as Atlas, Pulse, or Composite.
 _Avoid_: Case study

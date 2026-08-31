@@ -11,63 +11,64 @@ export default function HomePage() {
       className="min-h-screen text-foreground"
     >
       <div className="mx-auto max-w-4xl px-6 py-12 sm:px-10 md:py-20">
-        <header className="border-b border-[var(--line)] pb-16">
-          <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
-            Engineering Lab
-          </p>
-          <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-tight tracking-[-0.05em] sm:text-6xl">
-            Denys Shybkovskyy
-          </h1>
-          <p className="mt-6 max-w-2xl text-xl text-[var(--muted)]">
-            A place to see how I think through hard technical problems.
-          </p>
-        </header>
-
         <section
           id="about"
-          aria-labelledby="about-heading"
-          className="border-b border-[var(--line)] py-16"
+          aria-label="About"
+          className="border-b border-border pb-16 md:pb-24"
         >
-          <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
-            About
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+            01 / About
           </p>
-          <h2
-            id="about-heading"
-            className="mt-3 text-3xl font-semibold tracking-[-0.04em]"
-          >
-            Engineering work, made inspectable.
-          </h2>
-          <div className="mt-6 max-w-3xl space-y-4 text-lg text-[var(--muted)]">
-            <p>
-              I&apos;ve been building software for quite a few years now, across
-              large enterprise applications, e-commerce, and AI-powered and
-              security-focused platforms.
-            </p>
-            <p>
-              Technologies and frameworks change. What doesn&apos;t is the
-              fundamentals — breaking down a problem, reasoning about
-              trade-offs, designing boundaries, understanding a system before
-              changing it, and making a defensible call when there isn&apos;t a
-              perfect answer.
-            </p>
-            <p>
-              A CV can tell you I know React, TypeScript, or Vue. It can&apos;t
-              really show how I think or what I&apos;m capable of building. So
-              instead of asking you to take that on trust, I built something
+          <p className="mt-10 font-mono text-lg tracking-[0.08em] text-muted-foreground uppercase">
+            Denys Shybkovskyy
+          </p>
+          <h1 className="mt-4 max-w-4xl text-6xl font-extrabold uppercase leading-[0.88] tracking-[-0.04em] sm:text-8xl">
+            Frontend <span className="text-primary">Engineer</span>
+          </h1>
+
+          <blockquote className="mt-10 max-w-2xl border-l-2 border-primary pl-5 sm:pl-6">
+            <p className="text-xl font-semibold leading-snug tracking-[-0.02em] text-foreground">
+              A CV can tell you I know React, TypeScript, or Vue. It can't show
+              how I think, or what I'm capable of building. So I built something
               that lets you see it.
             </p>
+          </blockquote>
+
+          <div className="mt-10 max-w-2xl space-y-6 text-base leading-8 text-muted-foreground">
             <p>
-              This platform is my engineering lab — a collection of projects
-              built to explore different problems, technologies, and
-              architectural approaches. Each one is a chance to make real
-              engineering decisions and show the trade-offs behind them.
+              I've been building software across large enterprise applications,
+              e-commerce, and AI-powered and security-focused platforms. The
+              stack changes — the fundamentals don't: breaking down a problem,
+              reasoning about trade-offs, designing boundaries, understanding a
+              system before changing it, and making a defensible call when there
+              isn't a perfect answer.
             </p>
-            <p>
-              The point isn&apos;t proving I can work in one stack — it&apos;s
-              showing I can pick up new tools, understand the actual problem,
-              and make informed calls with them. Because technologies will keep
-              changing; what matters is understanding them, choosing them for
-              the right reasons, and building things that work.
+
+            <aside
+              aria-labelledby="why-this-site-heading"
+              className="border border-border bg-card p-5 font-mono"
+            >
+              <h2
+                id="why-this-site-heading"
+                className="mb-3 font-mono text-xs font-medium uppercase tracking-[0.16em] text-primary"
+              >
+                What this site is
+              </h2>
+              <p className="text-sm leading-7 text-muted-foreground">
+                This is my engineering lab — a collection of projects built to
+                explore different problems, technologies, and architectural
+                approaches. Each one is a real engineering decision, with real
+                trade-offs. The point isn't proving I can work in one stack.
+                It's showing I can pick up new tools, understand the actual
+                problem, and make informed calls with them.
+              </p>
+            </aside>
+
+            <p className="font-mono text-sm leading-7 text-muted-foreground sm:text-base">
+              <span aria-hidden="true" className="text-primary">
+                ${" "}
+              </span>
+              Engineering Lab = Projects + documented decisions + Evidence
             </p>
           </div>
         </section>
@@ -75,11 +76,11 @@ export default function HomePage() {
         <section
           id="projects"
           aria-labelledby="projects-heading"
-          className="border-b border-[var(--line)] py-16"
+          className="border-b border-border py-16"
         >
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
+              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
                 Projects
               </p>
               <h2
@@ -89,10 +90,7 @@ export default function HomePage() {
                 What I am building
               </h2>
             </div>
-            <Link
-              href="/projects"
-              className="text-sm text-[var(--highlight)] underline"
-            >
+            <Link href="/projects" className="text-sm text-primary underline">
               View all projects
             </Link>
           </div>
@@ -106,9 +104,9 @@ export default function HomePage() {
         <section
           id="experience"
           aria-labelledby="experience-heading"
-          className="border-b border-[var(--line)] py-16"
+          className="border-b border-border py-16"
         >
-          <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
+          <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
             Experience
           </p>
           <h2
@@ -117,7 +115,7 @@ export default function HomePage() {
           >
             A truthful record is still being assembled.
           </h2>
-          <p className="mt-6 max-w-3xl text-lg text-[var(--muted)]">
+          <p className="mt-6 max-w-3xl text-lg text-muted-foreground">
             Roles, dates, and working statements will be published once the
             wording and supporting context are approved.
           </p>
@@ -128,7 +126,7 @@ export default function HomePage() {
           aria-labelledby="contact-heading"
           className="py-16"
         >
-          <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
+          <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
             Contact
           </p>
           <h2
@@ -137,7 +135,7 @@ export default function HomePage() {
           >
             Contact actions will appear when verified.
           </h2>
-          <p className="mt-6 max-w-3xl text-lg text-[var(--muted)]">
+          <p className="mt-6 max-w-3xl text-lg text-muted-foreground">
             No résumé, email, LinkedIn, or GitHub destination is published here
             until it is confirmed and ready to receive visitors.
           </p>

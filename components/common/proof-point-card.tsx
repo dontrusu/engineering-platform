@@ -9,9 +9,12 @@ export type ProofPointCardProps = {
 export function ProofPointCard({ eyebrow, body }: ProofPointCardProps) {
   return (
     <article aria-label={eyebrow} className="h-full">
-      <Card className="h-full border border-[var(--line)] bg-[var(--panel)] shadow-sm">
+      <Card className="h-full border border-border bg-card shadow-sm">
         <CardHeader className="pb-0">
-          <Badge variant="secondary" className="w-fit uppercase tracking-[0.12em]">
+          <Badge
+            variant="secondary"
+            className="w-fit uppercase tracking-[0.12em]"
+          >
             {eyebrow}
           </Badge>
         </CardHeader>

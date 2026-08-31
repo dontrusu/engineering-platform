@@ -17,13 +17,10 @@ export default function AtlasPage() {
       className="min-h-screen text-foreground"
     >
       <div className="mx-auto max-w-4xl px-6 py-16 sm:px-8">
-        <Link
-          href="/projects"
-          className="text-sm text-[var(--highlight)] underline"
-        >
+        <Link href="/projects" className="text-sm text-primary underline">
           Back to projects
         </Link>
-        <p className="mt-10 text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
+        <p className="mt-10 text-xs uppercase tracking-[0.2em] text-muted-foreground">
           Project Page
         </p>
         <h1 className="mt-3 text-4xl font-semibold tracking-[-0.05em]">
@@ -39,8 +36,8 @@ export default function AtlasPage() {
           >
             Problem framing
           </h2>
-          <p className="text-lg text-[var(--muted)]">{atlas.problem}</p>
-          <p className="text-lg text-[var(--muted)]">
+          <p className="text-lg text-muted-foreground">{atlas.problem}</p>
+          <p className="text-lg text-muted-foreground">
             Atlas is an informational Project Page, not yet a Case Study. The
             full decisions, trade-offs, implementation, and supporting Evidence
             are not published until they are ready to be represented truthfully.
@@ -48,7 +45,7 @@ export default function AtlasPage() {
         </section>
         <section
           aria-labelledby="atlas-state"
-          className="mt-10 border-t border-[var(--line)] pt-8"
+          className="mt-10 border-t border-border pt-8"
         >
           <h2
             id="atlas-state"
@@ -56,14 +53,14 @@ export default function AtlasPage() {
           >
             Current state
           </h2>
-          <p className="mt-4 text-lg text-[var(--muted)]">
+          <p className="mt-4 text-lg text-muted-foreground">
             {atlas.currentState}
           </p>
         </section>
         {atlas.deployedHref ? (
           <a
             href={atlas.deployedHref}
-            className="mt-8 inline-block text-[var(--highlight)] underline"
+            className="mt-8 inline-block text-primary underline"
           >
             Visit project
           </a>

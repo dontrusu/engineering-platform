@@ -6,14 +6,15 @@ test("homepage renders the editorial portfolio and passes accessibility checks",
 }) => {
   await page.goto("/");
 
+  await expect(page.getByText("Denys Shybkovskyy")).toBeVisible();
   await expect(
-    page.getByRole("heading", { name: "Denys Shybkovskyy" }),
-  ).toBeVisible();
-  await expect(
-    page.getByRole("heading", { name: "Engineering work, made inspectable." }),
+    page.getByRole("heading", { name: "Frontend Engineer" }),
   ).toBeVisible();
   await expect(
     page.getByRole("heading", { name: "What I am building" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "What this site is" }),
   ).toBeVisible();
   await expect(
     page.getByRole("heading", {

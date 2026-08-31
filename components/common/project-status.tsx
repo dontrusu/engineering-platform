@@ -6,7 +6,7 @@ export function ProjectStatusIndicator({ status }: { status: ProjectStatus }) {
     <div aria-label={`Project status: ${status}`} className="space-y-2">
       <Badge
         variant="secondary"
-        className="border-[color-mix(in_srgb,var(--planned)_45%,var(--line))] bg-transparent font-mono text-[var(--planned)] uppercase tracking-[0.12em]"
+        className="border-planned/45 bg-transparent font-mono text-planned uppercase tracking-[0.12em]"
       >
         {status}
       </Badge>

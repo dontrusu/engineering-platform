@@ -67,7 +67,7 @@ export default function RootLayout({
         </a>
 
         <header className="mobile-header md:hidden">
-          <Link href="/" className="site-identity">
+          <Link href="/" className="site-identity text-primary">
             Engineering Lab
           </Link>
           <nav aria-label="Mobile section navigation">
@@ -78,7 +78,7 @@ export default function RootLayout({
         <div className="site-frame">
           <aside className="desktop-rail hidden md:block">
             <div className="desktop-rail-inner">
-              <Link href="/" className="site-identity">
+              <Link href="/" className="site-identity text-primary">
                 Engineering
                 <br />
                 Lab

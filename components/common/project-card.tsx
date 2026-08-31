@@ -26,7 +26,7 @@ export function ProjectCard({
 }: ProjectCardProps) {
   return (
     <article aria-label={name} className="h-full">
-      <Card className="h-full border border-[var(--line)] bg-[var(--panel)] shadow-none">
+      <Card className="h-full border border-border bg-card shadow-none">
         <CardHeader>
           <div className="flex items-start justify-between gap-3">
             <Badge
@@ -46,9 +46,9 @@ export function ProjectCard({
           >
             {name}
           </CardTitle>
-          <p className="text-sm text-[var(--muted)]">{problem}</p>
+          <p className="text-sm text-muted-foreground">{problem}</p>
           <div>
-            <p className="text-xs font-medium uppercase tracking-[0.14em] text-[var(--muted)]">
+            <p className="text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
               Technology
             </p>
             <ul
@@ -62,12 +62,12 @@ export function ProjectCard({
               ))}
             </ul>
           </div>
-          <p className="text-sm text-[var(--muted)]">{currentState}</p>
+          <p className="text-sm text-muted-foreground">{currentState}</p>
           <div className="flex flex-wrap gap-4 pt-2 text-sm">
             {pageHref ? (
               <Link
                 href={pageHref}
-                className="text-[var(--highlight)] underline underline-offset-4"
+                className="text-primary underline underline-offset-4"
               >
                 View Project Page
               </Link>
@@ -75,7 +75,7 @@ export function ProjectCard({
             {deployedHref ? (
               <a
                 href={deployedHref}
-                className="text-[var(--highlight)] underline underline-offset-4"
+                className="text-primary underline underline-offset-4"
               >
                 Visit project
               </a>

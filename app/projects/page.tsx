@@ -11,17 +11,17 @@ export default function ProjectsPage() {
       className="min-h-screen text-foreground"
     >
       <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8 lg:px-10">
-        <header className="mb-10 border-b border-[var(--line)] pb-8">
-          <Link href="/" className="text-sm text-[var(--highlight)] underline">
+        <header className="mb-10 border-b border-border pb-8">
+          <Link href="/" className="text-sm text-primary underline">
             Engineering Lab
           </Link>
-          <p className="mt-8 text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
+          <p className="mt-8 text-xs uppercase tracking-[0.2em] text-muted-foreground">
             Projects
           </p>
           <h1 className="mt-3 text-4xl font-semibold tracking-[-0.05em]">
             Project index
           </h1>
-          <p className="mt-4 max-w-2xl text-lg text-[var(--muted)]">
+          <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
             Current Projects, their problem framing, and what is ready to be
             explored today.
           </p>

@@ -1,6 +1,6 @@
 # Project pages and deployment statuses
 
-**Status:** accepted
+**Status:** superseded by ADR-0008
 **Date:** 2026-08-28
 **Project:** Platform
 

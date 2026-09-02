@@ -1,57 +1,84 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-test("Projects index presents truthful project availability accessibly", async ({
+test("mouse navigation opens a Project Page from the index", async ({
   page,
 }) => {
   await page.goto("/projects");
 
-  await expect(
-    page.getByRole("heading", { name: "Project index" }),
-  ).toBeVisible();
-  await expect(
-    page.getByRole("link", { name: "View Project Page" }),
-  ).toHaveAttribute("href", "/projects/atlas");
-  await expect(page.getByText("Planned", { exact: true })).toHaveCount(3);
-  await expect(page.getByRole("link", { name: /pulse/i })).toHaveCount(0);
-  await expect(page.getByRole("link", { name: /composite/i })).toHaveCount(0);
-  await expect(
-    page
-      .getByRole("navigation", { name: "Section navigation", exact: true })
-      .getByRole("link", {
-        name: "Experience",
-      }),
-  ).toHaveAttribute("href", "/#experience");
+  await expect(page.getByRole("main")).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+
+  const projectLink = page
+    .getByRole("link", { name: "View Project Page" })
+    .first();
+  const href = await projectLink.getAttribute("href");
+
+  expect(href).toMatch(/^\/projects\/[^/]+$/);
+  if (!href) throw new Error("Project Page link is missing its destination");
 
   const accessibility = await new AxeBuilder({ page }).analyze();
   expect(accessibility.violations).toEqual([]);
-});
 
-test("Atlas Project Page preserves its truthful incomplete state", async ({
-  page,
-}) => {
-  await page.goto("/projects/atlas");
+  await projectLink.click();
 
-  await expect(page.getByRole("heading", { name: "Atlas" })).toBeVisible();
-  await expect(page.getByText("Planned", { exact: true })).toBeVisible();
-  await expect(page.getByText(/not yet a Case Study/i)).toBeVisible();
+  expect(new URL(page.url()).pathname).toBe(href);
+  await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
   await expect(
     page.getByRole("link", { name: "Back to projects" }),
   ).toHaveAttribute("href", "/projects");
-  await expect(page.getByRole("link", { name: "Visit project" })).toHaveCount(
-    0,
-  );
-  await expect(
-    page.getByRole("link", { name: "Skip to content" }),
-  ).toHaveAttribute("href", "#main-content");
-  await expect(
-    page
-      .getByRole("navigation", { name: "Section navigation", exact: true })
-      .getByRole("link", {
-        name: "Contact",
-      }),
-  ).toHaveAttribute("href", "/#contact");
 
-  const accessibility = await new AxeBuilder({ page }).analyze();
-  expect(accessibility.violations).toEqual([]);
+  const projectPageAccessibility = await new AxeBuilder({ page }).analyze();
+  expect(projectPageAccessibility.violations).toEqual([]);
+});
+
+test("keyboard navigation opens a Project Page from the index", async ({
+  page,
+}) => {
+  await page.goto("/projects");
+
+  const projectLink = page
+    .getByRole("link", { name: "View Project Page" })
+    .first();
+  const href = await projectLink.getAttribute("href");
+
+  expect(href).toMatch(/^\/projects\/[^/]+$/);
+  if (!href) throw new Error("Project Page link is missing its destination");
+
+  await projectLink.focus();
+  await expect(projectLink).toBeFocused();
+  await page.keyboard.press("Enter");
+
+  await expect.poll(() => new URL(page.url()).pathname).toBe(href);
+});
+
+test("unknown Project slugs return not found", async ({ page }) => {
+  const response = await page.goto("/projects/unknown-project");
+
+  expect(response?.status()).toBe(404);
+});
+
+test.describe("touch input", () => {
+  test.use({
+    viewport: { width: 390, height: 844 },
+    hasTouch: true,
+    isMobile: true,
+  });
+
+  test("opens a Project Page from the index", async ({ page }) => {
+    await page.goto("/projects");
+
+    const projectLink = page
+      .getByRole("link", { name: "View Project Page" })
+      .first();
+    const href = await projectLink.getAttribute("href");
+
+    expect(href).toMatch(/^\/projects\/[^/]+$/);
+    if (!href) throw new Error("Project Page link is missing its destination");
+
+    await projectLink.tap();
+
+    await expect.poll(() => new URL(page.url()).pathname).toBe(href);
+    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+  });
 });

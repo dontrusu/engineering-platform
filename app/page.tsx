@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { ProjectCard } from "@/components/common/project-card";
+import { ProjectRow } from "@/components/common/project-row";
 import { projects } from "@/lib/projects";
 
 export default function HomePage() {
@@ -75,7 +75,7 @@ export default function HomePage() {
 
         <section
           id="projects"
-          aria-labelledby="projects-heading"
+          aria-label="Projects"
           className="border-b border-border py-16"
         >
           <div className="flex flex-wrap items-end justify-between gap-4">
@@ -94,16 +94,16 @@ export default function HomePage() {
               View all projects
             </Link>
           </div>
-          <div className="mt-8 grid gap-5 md:grid-cols-3">
+          <div className="mt-8 grid gap-4">
             {projects.map((project) => (
-              <ProjectCard key={project.slug} {...project} />
+              <ProjectRow key={project.slug} {...project} />
             ))}
           </div>
         </section>
 
         <section
           id="experience"
-          aria-labelledby="experience-heading"
+          aria-label="Experience"
           className="border-b border-border py-16"
         >
           <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
@@ -121,11 +121,7 @@ export default function HomePage() {
           </p>
         </section>
 
-        <section
-          id="contact"
-          aria-labelledby="contact-heading"
-          className="py-16"
-        >
+        <section id="contact" aria-label="Contact" className="py-16">
           <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
             Contact
           </p>

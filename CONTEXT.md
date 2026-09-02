@@ -16,20 +16,26 @@ _Avoid_: Resume
 An independently built system, such as Atlas, Pulse, or Composite.
 _Avoid_: Case study
 
+**Project Description**:
+Flexible overview copy for a Project. It may combine the Project's problem,
+purpose, proposed solution, or current progress; it is not required to follow a
+fixed narrative structure.
+_Avoid_: Treating Description as a synonym for Problem Statement
+
 **Case Study**:
 The platform's explanation of a Project's problem, decisions, trade-offs, and evidence.
 _Avoid_: Project
 
 **Project Page**:
-A public page that introduces a Project, its problem, and its current state. A Project Page may exist before the Project is deployed and is not necessarily a Case Study.
+A public page that introduces a Project through its available information. Every Project has a Project Page, including Projects that are still Planned, and the page is not necessarily a Case Study.
 _Avoid_: Case study, stub
 
 **Planned**:
-A Project status meaning the Project is not currently available through a verified deployed-project link.
+A Project status meaning the Project is not yet operational or released.
 _Avoid_: Unavailable Project
 
 **Live**:
-A Project status meaning the actual Project is available through a verified deployed-project link.
+A Project status meaning the actual Project is operational or released. It does not imply that a public deployment link is available.
 _Avoid_: Complete Case Study
 
 **Note**:

@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { ProjectCard } from "@/components/common/project-card";
+import { ProjectRow } from "@/components/common/project-row";
 import { projects } from "@/lib/projects";
 
 export default function ProjectsPage() {
@@ -30,9 +30,9 @@ export default function ProjectsPage() {
           <h2 id="project-list" className="sr-only">
             Projects
           </h2>
-          <div className="grid gap-5 md:grid-cols-3">
+          <div className="grid gap-4">
             {projects.map((project) => (
-              <ProjectCard key={project.slug} {...project} />
+              <ProjectRow key={project.slug} {...project} />
             ))}
           </div>
         </section>

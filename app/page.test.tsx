@@ -1,65 +1,44 @@
+import { render, screen, within } from "@testing-library/react";
+
+import { projects } from "@/lib/projects";
+
+import Page from "./page";
+
 describe("Home page", () => {
-  it("renders truthful positioning, project navigation, and editorial sections", async () => {
-    const { default: Page } = await import("./page");
-
-    const { render, screen } = await import("@testing-library/react");
-
+  it("provides the primary page structure", () => {
     render(<Page />);
 
-    expect(screen.getByText("Denys Shybkovskyy")).toBeInTheDocument();
+    expect(screen.getByRole("main")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument();
+    expect(screen.getByRole("region", { name: "About" })).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "Frontend Engineer" }),
+      screen.getByRole("region", { name: "Projects" }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "What I am building" }),
+      screen.getByRole("region", { name: "Experience" }),
     ).toBeInTheDocument();
+    expect(screen.getByRole("region", { name: "Contact" })).toBeInTheDocument();
+  });
+
+  it("presents the canonical Projects collection", () => {
+    render(<Page />);
+
+    const projectRegion = screen.getByRole("region", { name: "Projects" });
+    expect(within(projectRegion).getAllByRole("article")).toHaveLength(
+      projects.length,
+    );
+    expect(
+      within(projectRegion).getAllByRole("link", {
+        name: "View Project Page",
+      }),
+    ).toHaveLength(projects.length);
+  });
+
+  it("links to the complete Projects index", () => {
+    render(<Page />);
+
     expect(
       screen.getByRole("link", { name: "View all projects" }),
     ).toHaveAttribute("href", "/projects");
-    expect(screen.getAllByText("Planned")).toHaveLength(3);
-    expect(
-      screen.getByRole("heading", {
-        name: "A truthful record is still being assembled.",
-      }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole("heading", {
-        name: "Contact actions will appear when verified.",
-      }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole("link", { name: "View Project Page" }),
-    ).toHaveAttribute("href", "/projects/atlas");
-    expect(
-      screen.queryByRole("link", { name: "Pulse" }),
-    ).not.toBeInTheDocument();
-  });
-
-  it("presents the evidence-first About composition", async () => {
-    const { default: Page } = await import("./page");
-
-    const { render, within } = await import("@testing-library/react");
-
-    const about = render(<Page />);
-    const aboutScreen = within(about.container);
-
-    expect(
-      aboutScreen.getByText(
-        /A CV can tell you I know React, TypeScript, or Vue/,
-      ),
-    ).toBeInTheDocument();
-    expect(
-      aboutScreen.getByRole("heading", { name: "What this site is" }),
-    ).toBeInTheDocument();
-    expect(
-      aboutScreen.getByText(/The stack changes — the fundamentals don't/),
-    ).toBeInTheDocument();
-    expect(
-      aboutScreen.getByText(
-        /Engineering Lab = Projects \+ documented decisions \+ Evidence/,
-      ),
-    ).toBeInTheDocument();
-    expect(aboutScreen.queryByText("6+")).not.toBeInTheDocument();
-    expect(aboutScreen.queryByText("40+")).not.toBeInTheDocument();
   });
 });

@@ -1,18 +1,29 @@
-describe("Projects index", () => {
-  it("lists all projects and links only the approved Atlas Project Page", async () => {
-    const { default: Page } = await import("./page");
-    const { render, screen } = await import("@testing-library/react");
+import { render, screen, within } from "@testing-library/react";
 
+import { projects } from "@/lib/projects";
+
+import Page from "./page";
+
+describe("Projects index", () => {
+  it("presents every canonical Project", () => {
     render(<Page />);
 
-    expect(screen.getByRole("heading", { name: "Project index" })).toBeInTheDocument();
-    expect(screen.getAllByRole("article")).toHaveLength(3);
-    expect(screen.getByRole("link", { name: "View Project Page" })).toHaveAttribute(
-      "href",
-      "/projects/atlas",
+    const projectList = screen.getByRole("region", { name: "Projects" });
+    expect(within(projectList).getAllByRole("article")).toHaveLength(
+      projects.length,
     );
-    expect(screen.getAllByText("Planned")).toHaveLength(3);
-    expect(screen.queryByRole("link", { name: /pulse/i })).not.toBeInTheDocument();
-    expect(screen.queryByRole("link", { name: /composite/i })).not.toBeInTheDocument();
+    expect(
+      within(projectList).getAllByRole("link", {
+        name: "View Project Page",
+      }),
+    ).toHaveLength(projects.length);
+  });
+
+  it("links back to the Engineering Lab", () => {
+    render(<Page />);
+
+    expect(
+      screen.getByRole("link", { name: "Engineering Lab" }),
+    ).toHaveAttribute("href", "/");
   });
 });

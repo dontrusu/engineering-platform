@@ -1,34 +1,10 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Barlow_Condensed, DM_Mono, DM_Sans } from "next/font/google";
-import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 
-const sections = [
-  { label: "About", href: "/#about", number: "01" },
-  { label: "Projects", href: "/#projects", number: "02" },
-  { label: "Experience", href: "/#experience", number: "03" },
-  { label: "Contact", href: "/#contact", number: "04" },
-] as const;
-
-function SectionLinks() {
-  return (
-    <ul className="site-navigation-list">
-      {sections.map(({ label, href, number }) => (
-        <li key={label}>
-          <Link href={href} className="site-navigation-link">
-            <span aria-hidden="true" className="site-navigation-number">
-              {number}
-            </span>
-            <span aria-hidden="true" className="site-navigation-rule" />
-            <span>{label}</span>
-          </Link>
-        </li>
-      ))}
-    </ul>
-  );
-}
+import { SiteNavigation } from "./_components/site-navigation/site-navigation";
 
 const display = Barlow_Condensed({
   subsets: ["latin"],
@@ -54,6 +30,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       className={cn(
         "font-sans",
         display.variable,
@@ -66,33 +43,7 @@ export default function RootLayout({
           Skip to content
         </a>
 
-        <header className="mobile-header md:hidden">
-          <Link href="/" className="site-identity text-primary">
-            Engineering Lab
-          </Link>
-          <nav aria-label="Mobile section navigation">
-            <SectionLinks />
-          </nav>
-        </header>
-
-        <div className="site-frame">
-          <aside className="desktop-rail hidden md:block">
-            <div className="desktop-rail-inner">
-              <Link href="/" className="site-identity text-primary">
-                Engineering
-                <br />
-                Lab
-              </Link>
-              <nav
-                aria-label="Section navigation"
-                className="desktop-navigation"
-              >
-                <SectionLinks />
-              </nav>
-            </div>
-          </aside>
-          <div className="site-content">{children}</div>
-        </div>
+        <SiteNavigation>{children}</SiteNavigation>
       </body>
     </html>
   );

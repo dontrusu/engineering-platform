@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { homePageEndMarkerId } from "@/app/_components/site-navigation/sections";
 import { ProjectRow } from "@/components/common/project-row";
 import { projects } from "@/lib/projects";
 
@@ -14,7 +15,7 @@ export default function HomePage() {
         <section
           id="about"
           aria-label="About"
-          className="border-b border-border pb-16 md:pb-24"
+          className="scroll-mt-24 border-b border-border pb-16 md:pb-24"
         >
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
             01 / About
@@ -76,7 +77,7 @@ export default function HomePage() {
         <section
           id="projects"
           aria-label="Projects"
-          className="border-b border-border py-16"
+          className="scroll-mt-24 border-b border-border py-16"
         >
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
@@ -104,7 +105,7 @@ export default function HomePage() {
         <section
           id="experience"
           aria-label="Experience"
-          className="border-b border-border py-16"
+          className="scroll-mt-24 border-b border-border py-16"
         >
           <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
             Experience
@@ -121,7 +122,11 @@ export default function HomePage() {
           </p>
         </section>
 
-        <section id="contact" aria-label="Contact" className="py-16">
+        <section
+          id="contact"
+          aria-label="Contact"
+          className="scroll-mt-24 py-16"
+        >
           <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
             Contact
           </p>
@@ -136,6 +141,7 @@ export default function HomePage() {
             until it is confirmed and ready to receive visitors.
           </p>
         </section>
+        <div id={homePageEndMarkerId} aria-hidden="true" className="h-1" />
       </div>
     </main>
   );

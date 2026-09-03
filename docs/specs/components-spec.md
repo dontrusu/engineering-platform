@@ -30,10 +30,12 @@ and business decisions remain outside the component.
 
 ## Route-local components
 
-Components used by one route and without an established domain contract
-are colocated directly beside that route's `page.tsx`. Once a route segment
-accumulates three or more local-only components, group them in a
-`_components/` or `components/` subfolder to keep the segment scannable.
+Components owned exclusively by one route segment and without an established
+domain contract are colocated beside that segment's `page.tsx`, `layout.tsx`,
+or other route artifact. A layout remains the sole owner of its private
+components even though it renders them across descendant routes. Once a segment
+accumulates three or more local-only components, group them in a `_components/`
+or `components/` subfolder to keep the segment scannable.
 
 ## Composition and dependencies
 

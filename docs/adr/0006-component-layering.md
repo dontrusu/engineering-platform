@@ -13,9 +13,13 @@ accessibility fixes, but must not contain business props or content. Shared
 and domain components live in `components/common/*`, compose UI primitives
 by default, and may accept typed domain props without fetching data or making
 business decisions.
-Route-only components are colocated beside their route's `page.tsx`; once a
-route has three or more local-only components, they may be grouped in a
-`_components/` or `components/` subfolder.
+Components owned exclusively by one route segment are colocated with that
+segment's `page.tsx`, `layout.tsx`, or other route artifact. A layout remains
+the sole owner of its private components even though the layout renders them
+across all descendant routes. Once a segment has three or more local-only
+components, they may be grouped in a `_components/` or `components/`
+subfolder. Move a component to `components/common/*` only when multiple
+independent route or layout owners consume it.
 
 We chose composition over standalone implementations or adding domain logic
 to primitives to preserve a reusable primitive boundary while avoiding

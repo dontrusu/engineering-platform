@@ -22,7 +22,7 @@ test("mouse navigation opens a Project Page from the index", async ({
 
   await projectLink.click();
 
-  expect(new URL(page.url()).pathname).toBe(href);
+  await expect.poll(() => new URL(page.url()).pathname).toBe(href);
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
   await expect(
     page.getByRole("link", { name: "Back to projects" }),

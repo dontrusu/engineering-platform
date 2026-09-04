@@ -41,4 +41,36 @@ describe("Home page", () => {
       screen.getByRole("link", { name: "View all projects" }),
     ).toHaveAttribute("href", "/projects");
   });
+
+  it("presents the editorial sections in order with truthful incomplete states", () => {
+    render(<Page />);
+
+    const sections = ["About", "Projects", "Experience", "Contact"].map(
+      (name) => screen.getByRole("region", { name }),
+    );
+
+    expect(
+      sections.every(
+        (section, index) =>
+          index === 0 ||
+          Boolean(
+            sections[index - 1]?.compareDocumentPosition(section) &
+            Node.DOCUMENT_POSITION_FOLLOWING,
+          ),
+      ),
+    ).toBe(true);
+
+    expect(
+      screen.getByRole("heading", {
+        level: 2,
+        name: "A truthful record is still being assembled.",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {
+        level: 2,
+        name: "Contact actions will appear when verified.",
+      }),
+    ).toBeInTheDocument();
+  });
 });

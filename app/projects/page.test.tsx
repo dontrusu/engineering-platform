@@ -2,9 +2,18 @@ import { render, screen, within } from "@testing-library/react";
 
 import { projects } from "@/lib/projects";
 
-import Page from "./page";
+import Page, { metadata } from "./page";
 
 describe("Projects index", () => {
+  it("publishes the approved canonical metadata", () => {
+    expect(metadata).toMatchObject({
+      title: "Projects",
+      description:
+        "Explore Engineering Lab projects, their problem framing, current status, and available details.",
+      alternates: { canonical: "/projects" },
+    });
+  });
+
   it("presents every canonical Project", () => {
     render(<Page />);
 

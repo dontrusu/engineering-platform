@@ -1,7 +1,17 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 
 import { ProjectRow } from "@/components/common/project-row";
 import { projects } from "@/lib/projects";
+import { createPageMetadata } from "@/lib/site";
+
+// The root layout turns this short title into "Projects | Engineering Lab".
+export const metadata: Metadata = createPageMetadata({
+  title: "Projects",
+  description:
+    "Explore Engineering Lab projects, their problem framing, current status, and available details.",
+  path: "/projects",
+});
 
 export default function ProjectsPage() {
   return (

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Barlow_Condensed, DM_Mono, DM_Sans } from "next/font/google";
 
 import { cn } from "@/lib/utils";
+import { sharedSocialImage, siteOrigin } from "@/lib/site";
 
 import { SiteNavigation } from "./_components/site-navigation/site-navigation";
 
@@ -19,9 +20,22 @@ const mono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Engineering Lab",
-  description:
-    "A shell for a portfolio platform built with Next.js and App Router.",
+  // metadataBase resolves route-relative canonical and social-image URLs to
+  // the production origin when Next.js renders the final head elements.
+  metadataBase: new URL(siteOrigin),
+  title: {
+    default: "Engineering Lab — Denys Shybkovskyy",
+    // Child routes provide short titles such as "Projects" or "Atlas".
+    template: "%s | Engineering Lab",
+  },
+  openGraph: {
+    siteName: "Engineering Lab",
+    images: [sharedSocialImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [sharedSocialImage],
+  },
 };
 
 export default function RootLayout({

@@ -1,8 +1,19 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 
 import { homePageEndMarkerId } from "@/app/_components/site-navigation/sections";
 import { ProjectRow } from "@/components/common/project-row";
 import { projects } from "@/lib/projects";
+import { createPageMetadata } from "@/lib/site";
+
+// Home uses an absolute title so the child-route title template is not added.
+export const metadata: Metadata = createPageMetadata({
+  title: "Engineering Lab — Denys Shybkovskyy",
+  description:
+    "The engineering portfolio of frontend engineer Denys Shybkovskyy, featuring projects, documented decisions, and evidence.",
+  path: "/",
+  absoluteTitle: true,
+});
 
 export default function HomePage() {
   return (

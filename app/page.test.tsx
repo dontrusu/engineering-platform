@@ -2,9 +2,18 @@ import { render, screen, within } from "@testing-library/react";
 
 import { projects } from "@/lib/projects";
 
-import Page from "./page";
+import Page, { metadata } from "./page";
 
 describe("Home page", () => {
+  it("publishes the approved canonical metadata", () => {
+    expect(metadata).toMatchObject({
+      title: { absolute: "Engineering Lab — Denys Shybkovskyy" },
+      description:
+        "The engineering portfolio of frontend engineer Denys Shybkovskyy, featuring projects, documented decisions, and evidence.",
+      alternates: { canonical: "/" },
+    });
+  });
+
   it("provides the primary page structure", () => {
     render(<Page />);
 

@@ -38,6 +38,10 @@ _Avoid_: Unavailable Project
 A Project status meaning the actual Project is operational or released. It does not imply that a public deployment link is available.
 _Avoid_: Complete Case Study
 
+**Deployment Link**:
+An optional HTTPS link to a Project's official public deployment, maintained as part of the Project's authored content.
+_Avoid_: Project Link, Live URL, Verified Deployment Link
+
 **Note**:
 A short write-up that emerges from a genuinely difficult or interesting decision made while building a Project.
 _Avoid_: Blog post, article

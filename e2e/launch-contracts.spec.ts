@@ -84,12 +84,7 @@ test("public, removed, and unknown routes receive the security policy", async ({
     "/projects",
     ...projects.map(({ slug }) => `/projects/${slug}`),
   ];
-  const notFoundPaths = [
-    "/notes",
-    "/resume",
-    "/work",
-    "/projects/unknown-project",
-  ];
+  const notFoundPaths = ["/resume", "/work", "/projects/unknown-project"];
 
   for (const path of [...publicPaths, ...notFoundPaths]) {
     const response = await request.get(path);

@@ -9,7 +9,7 @@ Project that is still Planned. Creating the Project makes its page available;
 the platform does not maintain a separate page-approval state. This replaces
 the optional-page model from ADR-0007 with a stable identity and destination
 for every Project, while allowing the page to remain a simple truthful
-overview rather than a Case Study.
+overview rather than requiring a more elaborate publishing model.
 
 `Planned` and `Live` describe the actual Project's lifecycle, not its page or
 the availability of an external link. `Live` means the Project is operational

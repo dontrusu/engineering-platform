@@ -17,7 +17,7 @@ export const projects: readonly Project[] = [
     status: "Planned",
     technologies: ["Next.js", "TypeScript", "Content design"],
     description:
-      "Make the reasoning behind a technical system easier to inspect before implementation details take over. The full Case Study and Evidence are still being developed.",
+      "Make the reasoning behind a technical system easier to inspect before implementation details take over. Atlas is planned and its direction is still being established.",
   },
   {
     name: "Pulse",

@@ -21,8 +21,8 @@ consistent with the registry.
 
 `components/common/*` contains components used across two or more routes,
 and components whose props or rendering express portfolio concepts such as
-Projects, Case Studies, Notes, Proof Points, Evidence, or availability
-states. It also contains generic cross-route compositions that are above the
+Projects, Project Pages, Proof Points, Evidence, or availability states. It
+also contains generic cross-route compositions that are above the
 primitive level.
 
 Domain components may accept domain-specific typed props, but data fetching

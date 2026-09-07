@@ -275,6 +275,42 @@ test("mobile navigation stays visible and follows Home sections", async ({
   expect(accessibility.violations).toEqual([]);
 });
 
+test("keyboard input operates mobile section navigation", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+
+  const projectsLink = page
+    .getByRole("navigation", { name: "Mobile section navigation" })
+    .getByRole("link", { name: "Projects" });
+
+  await projectsLink.focus();
+  await expect(projectsLink).toBeFocused();
+  await page.keyboard.press("Enter");
+
+  await expect(page).toHaveURL(/#projects$/);
+  await expect(projectsLink).toHaveAttribute("aria-current", "location");
+});
+
+test.describe("mobile section navigation with touch input", () => {
+  test.use({
+    viewport: { width: 390, height: 844 },
+    hasTouch: true,
+    isMobile: true,
+  });
+
+  test("reaches a Home section", async ({ page }) => {
+    await page.goto("/");
+
+    const contactLink = page
+      .getByRole("navigation", { name: "Mobile section navigation" })
+      .getByRole("link", { name: "Contact" });
+    await contactLink.tap();
+
+    await expect(page).toHaveURL(/#contact$/);
+    await expect(contactLink).toHaveAttribute("aria-current", "location");
+  });
+});
+
 test("secondary routes do not mark a Home section as current", async ({
   page,
 }) => {

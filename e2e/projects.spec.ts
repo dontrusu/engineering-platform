@@ -1,6 +1,50 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
+import { projects } from "../lib/projects";
+
+for (const project of projects) {
+  for (const viewport of [
+    { name: "desktop", width: 1280, height: 900 },
+    { name: "mobile", width: 390, height: 844 },
+  ]) {
+    test(`${project.name} Project Page presents its canonical ${viewport.name} state accessibly`, async ({
+      page,
+    }) => {
+      await page.setViewportSize(viewport);
+      await page.goto(`/projects/${project.slug}`);
+
+      await expect(
+        page.getByRole("heading", { level: 1, name: project.name }),
+      ).toBeVisible();
+      await expect(
+        page.getByLabel(`Project status: ${project.status}`),
+      ).toBeVisible();
+      await expect(page.getByText(project.description)).toBeVisible();
+
+      const technologies = page.getByRole("list", { name: "Technologies" });
+      for (const technology of project.technologies) {
+        await expect(technologies.getByText(technology)).toBeVisible();
+      }
+
+      const deploymentLink = page.getByRole("link", {
+        name: "Visit project",
+      });
+      if (project.deployedHref) {
+        await expect(deploymentLink).toHaveAttribute(
+          "href",
+          project.deployedHref,
+        );
+      } else {
+        await expect(deploymentLink).toHaveCount(0);
+      }
+
+      const accessibility = await new AxeBuilder({ page }).analyze();
+      expect(accessibility.violations).toEqual([]);
+    });
+  }
+}
+
 test("mouse navigation opens a Project Page from the index", async ({
   page,
 }) => {

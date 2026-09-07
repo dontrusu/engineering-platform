@@ -15,7 +15,11 @@ during a build or deployment:
 - [ ] Assign `www.denysshybkovskyy.dev` and configure a permanent redirect to
       `https://denysshybkovskyy.dev` at the Vercel/domain layer.
 - [ ] Protect `main` in GitHub: block direct pushes and require pull requests.
-- [ ] After #13 lands, require each CI check owned by #13 before merging.
+- [ ] After #13 lands, require the stable `quality-gate` CI check before
+      merging. Its two prerequisite jobs remain implementation details of the
+      gate.
+- [ ] Treat Chromium as the sole required browser baseline. Safari, Firefox,
+      and other browser engines are outside the current release assurance.
 - [ ] Do not require approving reviews; reviews remain optional.
 - [ ] Verify the production Home page, every canonical Project Page,
       `/sitemap.xml`, `/robots.txt`, an unknown Project slug, and a removed

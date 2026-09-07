@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 import { projects } from "../lib/projects";
+import { expectedContentSecurityPolicy } from "../test/expected-security-policy";
 
 const origin = "https://denysshybkovskyy.dev";
 const homeDescription =
@@ -75,19 +76,26 @@ test("sitemap and robots expose only the canonical discovery contract", async ({
   );
 });
 
-test("removed and unknown routes remain not found and protected", async ({
+test("public, removed, and unknown routes receive the security policy", async ({
   request,
 }) => {
-  for (const path of [
+  const publicPaths = [
+    "/",
+    "/projects",
+    ...projects.map(({ slug }) => `/projects/${slug}`),
+  ];
+  const notFoundPaths = [
     "/notes",
     "/resume",
     "/work",
     "/projects/unknown-project",
-  ]) {
+  ];
+
+  for (const path of [...publicPaths, ...notFoundPaths]) {
     const response = await request.get(path);
-    expect(response.status()).toBe(404);
-    expect(response.headers()["content-security-policy"]).toContain(
-      "frame-ancestors 'none'",
+    expect(response.status()).toBe(notFoundPaths.includes(path) ? 404 : 200);
+    expect(response.headers()["content-security-policy"]).toBe(
+      expectedContentSecurityPolicy,
     );
     expect(response.headers()["x-content-type-options"]).toBe("nosniff");
     expect(response.headers()["referrer-policy"]).toBe(

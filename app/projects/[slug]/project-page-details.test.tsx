@@ -33,19 +33,19 @@ describe("ProjectPageDetails", () => {
     ).not.toBeInTheDocument();
   });
 
-  it("links to a verified external deployment", () => {
+  it("links to the Project's Deployment Link", () => {
     render(
       <ProjectPageDetails
         project={{
           ...projectFixture,
-          deployedHref: "https://example.com/verified-project",
+          deployedHref: "https://example.com/test-project",
         }}
       />,
     );
 
     expect(screen.getByRole("link", { name: "Visit project" })).toHaveAttribute(
       "href",
-      "https://example.com/verified-project",
+      "https://example.com/test-project",
     );
   });
 });

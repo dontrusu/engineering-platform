@@ -1,4 +1,5 @@
 import nextConfig from "./next.config";
+import { expectedContentSecurityPolicy } from "./test/expected-security-policy";
 
 describe("response security policy", () => {
   it("applies the agreed security headers to every route", async () => {
@@ -17,8 +18,8 @@ describe("response security policy", () => {
       "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
     });
     expect(headers).not.toHaveProperty("Strict-Transport-Security");
-    expect(headers["Content-Security-Policy"]).toContain(
-      "frame-ancestors 'none'",
+    expect(headers["Content-Security-Policy"]).toBe(
+      expectedContentSecurityPolicy,
     );
   });
 });

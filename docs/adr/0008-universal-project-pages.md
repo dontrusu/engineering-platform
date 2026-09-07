@@ -13,5 +13,5 @@ overview rather than a Case Study.
 
 `Planned` and `Live` describe the actual Project's lifecycle, not its page or
 the availability of an external link. `Live` means the Project is operational
-or released. A verified deployment link is independent and, when present,
+or released. A Deployment Link is independent and, when present,
 appears as `Visit project` on the Project Page.

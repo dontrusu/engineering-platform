@@ -4,12 +4,36 @@ import { expect, test } from "@playwright/test";
 test("Home exposes its primary structure accessibly", async ({ page }) => {
   await page.goto("/");
 
-  await expect(page.getByRole("main")).toBeVisible();
-  await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+  const main = page.getByRole("main");
+  await expect(main).toBeVisible();
+  await expect(
+    main.getByText("Denys Shybkovskyy", { exact: true }),
+  ).toBeVisible();
+  await expect(
+    main.getByRole("heading", { level: 1, name: "Frontend Engineer" }),
+  ).toBeVisible();
   await expect(page.getByRole("region", { name: "About" })).toBeVisible();
   await expect(page.getByRole("region", { name: "Projects" })).toBeVisible();
   await expect(page.getByRole("region", { name: "Experience" })).toBeVisible();
   await expect(page.getByRole("region", { name: "Contact" })).toBeVisible();
+  await expect(main.getByRole("region")).toHaveCount(4);
+  expect(
+    await main
+      .getByRole("region")
+      .evaluateAll((regions) => regions.map((region) => region.ariaLabel)),
+  ).toEqual(["About", "Projects", "Experience", "Contact"]);
+  await expect(
+    main.getByRole("heading", {
+      level: 2,
+      name: "A truthful record is still being assembled.",
+    }),
+  ).toBeVisible();
+  await expect(
+    main.getByRole("heading", {
+      level: 2,
+      name: "Contact actions will appear when verified.",
+    }),
+  ).toBeVisible();
   await expect(
     page.getByRole("link", { name: "Skip to content" }),
   ).toHaveAttribute("href", "#main-content");

@@ -36,7 +36,7 @@ describe("ProjectRow", () => {
     const deployedProject: Project = {
       ...projectFixture,
       status: "Live",
-      deployedHref: "https://example.com/verified-project",
+      deployedHref: "https://example.com/test-project",
     };
 
     render(<ProjectRow {...deployedProject} />);

@@ -1,4 +1,5 @@
 export type ProjectStatus = "Planned" | "Live";
+export type DeploymentLink = `https://${string}`;
 
 export type Project = {
   name: string;
@@ -6,10 +7,10 @@ export type Project = {
   status: ProjectStatus;
   technologies: readonly string[];
   description: string;
-  deployedHref?: string;
+  deployedHref?: DeploymentLink;
 };
 
-export const projects = [
+export const projects: readonly Project[] = [
   {
     name: "Atlas",
     slug: "atlas",
@@ -34,7 +35,7 @@ export const projects = [
     description:
       "Bring multiple technical concerns into a coherent system without hiding the trade-offs between them. Composite is planned and its implementation has not begun.",
   },
-] satisfies readonly Project[];
+];
 
 export function getProjectBySlug(slug: string): Project | undefined {
   return projects.find((project) => project.slug === slug);

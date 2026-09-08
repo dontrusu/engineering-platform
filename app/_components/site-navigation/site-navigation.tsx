@@ -13,7 +13,7 @@ export function SiteNavigation({ children }: { children: React.ReactNode }) {
         <MobileNavigation />
       </header>
       <div className="site-frame">
-        <aside className="desktop-rail hidden md:block">
+        <aside className="desktop-rail hidden bg-background md:block">
           <div className="desktop-rail-inner">
             <SiteIdentityLink className="site-identity text-primary">
               Engineering

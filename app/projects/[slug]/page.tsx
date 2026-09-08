@@ -6,6 +6,8 @@ import { createPageMetadata } from "@/lib/site";
 
 import { ProjectPageDetails } from "./project-page-details";
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   // Every canonical Project, including Planned Projects, receives a static
   // public Project Page at build time.

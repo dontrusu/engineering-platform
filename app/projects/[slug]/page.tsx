@@ -1,18 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { getProjectBySlug, projects } from "@/lib/projects";
+import { findVisibleProjectBySlug } from "@/data/projects/projects.server";
 import { createPageMetadata } from "@/lib/site";
 
-import { ProjectPageDetails } from "./project-page-details";
-
-export const dynamicParams = false;
-
-export function generateStaticParams() {
-  // Every canonical Project, including Planned Projects, receives a static
-  // public Project Page at build time.
-  return projects.map(({ slug }) => ({ slug }));
-}
+import { ProjectPageContent } from "./project-page-content";
 
 type ProjectPageProps = {
   params: Promise<{ slug: string }>;
@@ -22,7 +14,7 @@ export async function generateMetadata({
   params,
 }: ProjectPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = await findVisibleProjectBySlug(slug);
 
   if (!project) {
     // Metadata resolution follows the same not-found contract as page render.
@@ -39,7 +31,7 @@ export async function generateMetadata({
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = await findVisibleProjectBySlug(slug);
 
   if (!project) {
     notFound();
@@ -51,7 +43,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       tabIndex={-1}
       className="min-h-screen text-foreground"
     >
-      <ProjectPageDetails project={project} />
+      <ProjectPageContent project={project} />
     </main>
   );
 }

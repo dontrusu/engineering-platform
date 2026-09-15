@@ -1,9 +1,17 @@
 import { render, screen } from "@testing-library/react";
 import { notFound } from "next/navigation";
 
-import { projects } from "@/lib/projects";
+import { projectFixtures } from "@/data/projects/project-fixtures";
+import type { Project } from "@/data/projects/project-schema";
 
-import ProjectPage, { generateMetadata, generateStaticParams } from "./page";
+import ProjectPage, { generateMetadata } from "./page";
+import { ProjectPageContent } from "./project-page-content";
+
+vi.mock("@/data/projects/projects.server", () => ({
+  findVisibleProjectBySlug: vi.fn(async (slug: string) =>
+    projectFixtures.find((project) => project.slug === slug),
+  ),
+}));
 
 vi.mock("next/navigation", () => ({
   notFound: vi.fn(() => {
@@ -17,26 +25,43 @@ describe("Project Page route", () => {
   });
 
   it("resolves a canonical Project", async () => {
-    const canonicalProject = projects[0];
+    const canonicalProject = projectFixtures[0];
 
-    render(
-      await ProjectPage({
-        params: Promise.resolve({ slug: canonicalProject.slug }),
-      }),
-    );
+    render(<ProjectPageContent project={canonicalProject} />);
 
     expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument();
+    expect(
+      screen.getByLabelText(`Project status: ${canonicalProject.status}`),
+    ).toBeInTheDocument();
+    expect(screen.getByText(canonicalProject.description)).toBeInTheDocument();
+    expect(
+      screen.getByRole("list", { name: "Technologies" }),
+    ).toHaveTextContent(canonicalProject.technologies[0]);
+    expect(
+      screen.getByRole("link", { name: "Back to projects" }),
+    ).toHaveAttribute("href", "/projects");
+    expect(
+      screen.queryByRole("link", { name: "Visit project" }),
+    ).not.toBeInTheDocument();
     expect(notFound).not.toHaveBeenCalled();
   });
 
-  it("generates a route for every canonical Project", () => {
-    expect(generateStaticParams()).toEqual(
-      projects.map(({ slug }) => ({ slug })),
+  it("links to the Project's Deployment Link", async () => {
+    const deployedProject: Project = {
+      ...projectFixtures[0],
+      deployedHref: "https://example.com/project",
+    };
+
+    render(<ProjectPageContent project={deployedProject} />);
+
+    expect(screen.getByRole("link", { name: "Visit project" })).toHaveAttribute(
+      "href",
+      deployedProject.deployedHref,
     );
   });
 
   it("derives canonical metadata from the Project", async () => {
-    const project = projects[0];
+    const project = projectFixtures[0];
 
     await expect(
       generateMetadata({ params: Promise.resolve({ slug: project.slug }) }),

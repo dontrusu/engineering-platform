@@ -15,3 +15,6 @@ overview rather than requiring a more elaborate publishing model.
 the availability of an external link. `Live` means the Project is operational
 or released. A Deployment Link is independent and, when present,
 appears as `Visit project` on the Project Page.
+
+**Revised by ADR-0009:** Project Visibility now controls public availability.
+Every visible Project has a Project Page; hidden Projects do not.

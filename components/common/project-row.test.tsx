@@ -1,6 +1,6 @@
 import { render, screen, within } from "@testing-library/react";
 
-import type { Project } from "@/lib/projects";
+import type { Project } from "@/data/projects/project-schema";
 
 import { ProjectRow } from "./project-row";
 

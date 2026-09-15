@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { ProjectStatusIndicator } from "@/components/common/project-status";
 import { Badge } from "@/components/ui/badge";
-import type { Project } from "@/lib/projects";
+import type { Project } from "@/data/projects/project-schema";
 
 export type ProjectRowProps = Pick<
   Project,

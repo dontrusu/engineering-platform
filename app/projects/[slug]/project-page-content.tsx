@@ -2,9 +2,9 @@ import Link from "next/link";
 
 import { ProjectStatusIndicator } from "@/components/common/project-status";
 import { Badge } from "@/components/ui/badge";
-import type { Project } from "@/lib/projects";
+import type { Project } from "@/data/projects/project-schema";
 
-export function ProjectPageDetails({ project }: { project: Project }) {
+export function ProjectPageContent({ project }: { project: Project }) {
   return (
     <article className="mx-auto max-w-4xl px-6 py-16 sm:px-8">
       <Link href="/projects" className="text-sm text-primary underline">

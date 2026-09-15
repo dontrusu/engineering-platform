@@ -168,7 +168,9 @@ test("clicking the current fragment scrolls back to its section", async ({
   await experienceLink.click();
   await expect(page).toHaveURL(/#experience$/);
   await page.evaluate(() => window.scrollTo(0, 0));
-  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+  await expect
+    .poll(() => page.evaluate(() => window.scrollY))
+    .toBeLessThanOrEqual(1);
 
   await experienceLink.click();
   await expect

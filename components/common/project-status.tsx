@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import type { ProjectStatus } from "@/lib/projects";
+import type { ProjectStatus } from "@/data/projects/project-schema";
 
 export function ProjectStatusIndicator({ status }: { status: ProjectStatus }) {
   return (

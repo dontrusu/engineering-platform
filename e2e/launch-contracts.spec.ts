@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
-import { projects } from "../lib/projects";
-import { expectedContentSecurityPolicy } from "../test/expected-security-policy";
+import { projectFixtures as projects } from "../data/projects/project-fixtures";
+import { expectedContentSecurityPolicy } from "../test/contracts/security-headers";
 
 const origin = "https://denysshybkovskyy.dev";
 const homeDescription =

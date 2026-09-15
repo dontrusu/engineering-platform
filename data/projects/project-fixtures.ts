@@ -1,16 +1,6 @@
-export type ProjectStatus = "Planned" | "Live";
-export type DeploymentLink = `https://${string}`;
+import type { Project } from "./project-schema";
 
-export type Project = {
-  name: string;
-  slug: string;
-  status: ProjectStatus;
-  technologies: readonly string[];
-  description: string;
-  deployedHref?: DeploymentLink;
-};
-
-export const projects: readonly Project[] = [
+export const projectFixtures: readonly Project[] = [
   {
     name: "Atlas",
     slug: "atlas",
@@ -36,7 +26,3 @@ export const projects: readonly Project[] = [
       "Bring multiple technical concerns into a coherent system without hiding the trade-offs between them. Composite is planned and its implementation has not begun.",
   },
 ];
-
-export function getProjectBySlug(slug: string): Project | undefined {
-  return projects.find((project) => project.slug === slug);
-}

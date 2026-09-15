@@ -1,7 +1,7 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-import { projects } from "../lib/projects";
+import { projectFixtures as projects } from "../data/projects/project-fixtures";
 
 for (const project of projects) {
   for (const viewport of [

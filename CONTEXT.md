@@ -22,7 +22,7 @@ fixed narrative structure.
 _Avoid_: Treating Description as a synonym for Problem Statement
 
 **Project Page**:
-A public page that introduces a Project through its available information. Every Project has a Project Page, including Projects that are still Planned.
+A public page that introduces a visible Project through its available information. Every visible Project has a Project Page, including visible Projects that are still Planned.
 _Avoid_: Stub
 
 **Planned**:
@@ -31,6 +31,10 @@ _Avoid_: Unavailable Project
 
 **Live**:
 A Project status meaning the actual Project is operational or released. It does not imply that a public deployment link is available.
+
+**Project Visibility**:
+The editorial decision of whether a Project's authored content appears on public platform surfaces. It is independent of whether the actual Project is Planned or Live.
+_Avoid_: Publication Status, Project Status
 
 **Deployment Link**:
 An optional HTTPS link to a Project's official public deployment, maintained as part of the Project's authored content.

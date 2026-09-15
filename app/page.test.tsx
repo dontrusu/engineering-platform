@@ -1,8 +1,13 @@
 import { render, screen, within } from "@testing-library/react";
 
-import { projects } from "@/lib/projects";
+import { projectFixtures } from "@/data/projects/project-fixtures";
 
-import Page, { metadata } from "./page";
+import { HomePageContent } from "./home-page-content";
+import { metadata } from "./page";
+
+vi.mock("@/data/projects/projects.server", () => ({
+  listVisibleProjects: vi.fn(async () => projectFixtures),
+}));
 
 describe("Home page", () => {
   it("publishes the approved canonical metadata", () => {
@@ -14,8 +19,8 @@ describe("Home page", () => {
     });
   });
 
-  it("provides the primary page structure", () => {
-    render(<Page />);
+  it("provides the primary page structure", async () => {
+    render(<HomePageContent projects={projectFixtures} />);
 
     expect(screen.getByRole("main")).toBeInTheDocument();
     expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument();
@@ -29,30 +34,30 @@ describe("Home page", () => {
     expect(screen.getByRole("region", { name: "Contact" })).toBeInTheDocument();
   });
 
-  it("presents the canonical Projects collection", () => {
-    render(<Page />);
+  it("presents the Projects collection", async () => {
+    render(<HomePageContent projects={projectFixtures} />);
 
     const projectRegion = screen.getByRole("region", { name: "Projects" });
     expect(within(projectRegion).getAllByRole("article")).toHaveLength(
-      projects.length,
+      projectFixtures.length,
     );
     expect(
       within(projectRegion).getAllByRole("link", {
         name: "View Project Page",
       }),
-    ).toHaveLength(projects.length);
+    ).toHaveLength(projectFixtures.length);
   });
 
-  it("links to the complete Projects index", () => {
-    render(<Page />);
+  it("links to the complete Projects index", async () => {
+    render(<HomePageContent projects={projectFixtures} />);
 
     expect(
       screen.getByRole("link", { name: "View all projects" }),
     ).toHaveAttribute("href", "/projects");
   });
 
-  it("presents the editorial sections in order with truthful incomplete states", () => {
-    render(<Page />);
+  it("presents the editorial sections in order with truthful incomplete states", async () => {
+    render(<HomePageContent projects={projectFixtures} />);
 
     const sections = ["About", "Projects", "Experience", "Contact"].map(
       (name) => screen.getByRole("region", { name }),

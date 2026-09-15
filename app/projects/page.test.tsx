@@ -1,8 +1,13 @@
 import { render, screen, within } from "@testing-library/react";
 
-import { projects } from "@/lib/projects";
+import { projectFixtures } from "@/data/projects/project-fixtures";
 
-import Page, { metadata } from "./page";
+import { metadata } from "./page";
+import { ProjectsPageContent } from "./projects-page-content";
+
+vi.mock("@/data/projects/projects.server", () => ({
+  listVisibleProjects: vi.fn(async () => projectFixtures),
+}));
 
 describe("Projects index", () => {
   it("publishes the approved canonical metadata", () => {
@@ -14,22 +19,22 @@ describe("Projects index", () => {
     });
   });
 
-  it("presents every canonical Project", () => {
-    render(<Page />);
+  it("presents every Project", async () => {
+    render(<ProjectsPageContent projects={projectFixtures} />);
 
     const projectList = screen.getByRole("region", { name: "Projects" });
     expect(within(projectList).getAllByRole("article")).toHaveLength(
-      projects.length,
+      projectFixtures.length,
     );
     expect(
       within(projectList).getAllByRole("link", {
         name: "View Project Page",
       }),
-    ).toHaveLength(projects.length);
+    ).toHaveLength(projectFixtures.length);
   });
 
-  it("links back to the Engineering Lab", () => {
-    render(<Page />);
+  it("links back to the Engineering Lab", async () => {
+    render(<ProjectsPageContent projects={projectFixtures} />);
 
     expect(
       screen.getByRole("link", { name: "Engineering Lab" }),
